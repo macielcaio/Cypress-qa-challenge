@@ -1,0 +1,8 @@
+{
+  "newProduct": {
+    "nome": "Logitech M Vertical ${RAND}",
+    "preco": 470,
+    "descricao": "Mouse",
+    "quantidade": 10
+  }
+}
