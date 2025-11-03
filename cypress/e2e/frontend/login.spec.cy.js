@@ -1,15 +1,13 @@
-// cypress/e2e/frontend/login.spec.cy.js
 import LoginPage from '../../pages/LoginPage'
 
-describe('Login flow', () => {
-  it('should show an error with invalid password', () => {
-    cy.intercept('POST', '**/login').as('loginReq')
+describe('Login', () => {
+  it('shows an error with invalid credentials', () => {
+    cy.visit('/login')
+    LoginPage.loginExpectError('fulano@qa.com', 'wrong-pass')
+  })
 
-    LoginPage.login('fulano@qa.com', 'wrong-pass')
-
-    cy.wait('@loginReq').its('response.statusCode').should('eq', 401)
-
-    cy.contains(/Email e\/ou senha inválidos/i, { timeout: 8000 })
-      .should('be.visible')
+  it('logs in successfully with valid credentials', () => {
+    // reutiliza o comando que já valida 200/201 + URL
+    cy.uiLogin()
   })
 })
